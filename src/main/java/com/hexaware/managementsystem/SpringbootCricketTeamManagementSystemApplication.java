@@ -1,4 +1,4 @@
-package com.hexaware.CricketTeamManagementSystem;
+package com.hexaware.managementsystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

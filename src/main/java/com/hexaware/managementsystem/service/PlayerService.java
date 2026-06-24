@@ -1,8 +1,8 @@
-package com.hexaware.CricketTeamManagementSystem.service;
+package com.hexaware.managementsystem.service;
 
 import java.util.List;
 
-import com.hexaware.CricketTeamManagementSystem.dto.PlayerDTO;
+import com.hexaware.managementsystem.dto.PlayerDTO;
 
 public interface PlayerService {
 	

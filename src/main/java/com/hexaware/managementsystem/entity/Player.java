@@ -1,4 +1,4 @@
-package com.hexaware.CricketTeamManagementSystem.entity;
+package com.hexaware.managementsystem.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

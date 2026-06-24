@@ -1,4 +1,4 @@
-package com.hexaware.CricketTeamManagementSystem.serviceimpl;
+package com.hexaware.managementsystem.serviceimpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hexaware.CricketTeamManagementSystem.dto.PlayerDTO;
-import com.hexaware.CricketTeamManagementSystem.entity.Player;
-import com.hexaware.CricketTeamManagementSystem.repository.PlayerRepository;
-import com.hexaware.CricketTeamManagementSystem.service.PlayerService;
+import com.hexaware.managementsystem.dto.PlayerDTO;
+import com.hexaware.managementsystem.entity.Player;
+import com.hexaware.managementsystem.exception.PlayerNotFoundException;
+import com.hexaware.managementsystem.repository.PlayerRepository;
+import com.hexaware.managementsystem.service.PlayerService;
 
 @Service
 public class PlayerServiceImpl implements PlayerService{
@@ -48,7 +49,9 @@ public class PlayerServiceImpl implements PlayerService{
 	@Override
 	public PlayerDTO updatePlayer(Long playerId, PlayerDTO dto) {
 		
-		Player player = playerRepository.findById(playerId).orElseThrow(null);
+		Player player = playerRepository.findById(playerId)
+		        .orElseThrow(() ->
+		                new PlayerNotFoundException("Player not found with ID : " + playerId));
 		
 		player.setPlayerName(dto.getPlayerName());
 		player.setJerseyNumber(dto.getJerseyNumber());
@@ -78,7 +81,8 @@ public class PlayerServiceImpl implements PlayerService{
 	public PlayerDTO getPlayerById(Long playerId) {
 		
 		Player player = playerRepository.findById(playerId)
-		        .orElseThrow(() -> new RuntimeException());
+		        .orElseThrow(() ->
+		                new PlayerNotFoundException("Player not found with ID : " + playerId));
 		
 		PlayerDTO dto = new PlayerDTO();						
 		
@@ -147,8 +151,12 @@ public class PlayerServiceImpl implements PlayerService{
 
 	@Override
 	public void deletePlayer(Long playerId) {
-		playerRepository.deleteById(playerId);
-		
+
+	    Player player = playerRepository.findById(playerId)
+	            .orElseThrow(() ->
+	                    new PlayerNotFoundException("Player not found with ID : " + playerId));
+
+	    playerRepository.delete(player);
 	}
 
 }

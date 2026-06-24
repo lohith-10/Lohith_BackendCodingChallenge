@@ -1,4 +1,4 @@
-package com.hexaware.CricketTeamManagementSystem.dto;
+package com.hexaware.managementsystem.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
