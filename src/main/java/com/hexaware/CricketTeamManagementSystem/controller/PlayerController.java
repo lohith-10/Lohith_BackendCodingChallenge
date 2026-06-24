@@ -35,6 +35,12 @@ public class PlayerController {
 		return playerService.getAllPlayers();
 	}
 	
+	@GetMapping("/allbowlers")
+	public List<PlayerDTO> getAllBowlers(){
+		
+		return playerService.getAllBowlers();
+	}
+	
 	@GetMapping("/{playerId}")
 	public PlayerDTO getPlayerById(@PathVariable Long playerId) {
 		

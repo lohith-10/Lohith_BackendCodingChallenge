@@ -31,9 +31,9 @@ public class PlayerServiceImpl implements PlayerService{
 		
 		Player savedPlayer = playerRepository.save(player);
 		
-		PlayerDTO responseDto = new PlayerDTO();
+		PlayerDTO responseDto = new PlayerDTO();             //again we need to convert the data to json for the client
 		
-		responseDto.setPlayerName(savedPlayer.getPlayerName());
+		responseDto.setPlayerName(savedPlayer.getPlayerName());     
 		responseDto.setJerseyNumber(savedPlayer.getJerseyNumber());
 		responseDto.setRole(savedPlayer.getRole());
 		responseDto.setTotalMatches(savedPlayer.getTotalMatches());
@@ -80,7 +80,7 @@ public class PlayerServiceImpl implements PlayerService{
 		Player player = playerRepository.findById(playerId)
 		        .orElseThrow(() -> new RuntimeException());
 		
-		PlayerDTO dto = new PlayerDTO();
+		PlayerDTO dto = new PlayerDTO();						
 		
 		dto.setPlayerName(player.getPlayerName());
 		dto.setJerseyNumber(player.getJerseyNumber());
@@ -116,6 +116,33 @@ public class PlayerServiceImpl implements PlayerService{
 			
 		}
 		return dtoList;
+	}
+	
+	@Override
+	public List<PlayerDTO> getAllBowlers(){
+		
+		List<Player> players = playerRepository.getAllBowlers();
+		
+		List<PlayerDTO> dtoList = new ArrayList<>();
+		
+		for(Player player : players) {
+			
+			PlayerDTO dto = new PlayerDTO();
+			
+			dto.setPlayerName(player.getPlayerName());
+			dto.setJerseyNumber(player.getJerseyNumber());
+			dto.setRole(player.getRole());
+			dto.setTotalMatches(player.getTotalMatches());
+			dto.setTeamName(player.getTeamName());
+			dto.setCountryName(player.getCountryName());
+			dto.setDescription(player.getDescription());
+			
+			dtoList.add(dto);
+		}
+		
+		return dtoList;
+		
+		
 	}
 
 	@Override

@@ -14,6 +14,8 @@ public interface PlayerService {
 	
 	List<PlayerDTO> getAllPlayers();
 	
+	List<PlayerDTO> getAllBowlers();
+	
 	void deletePlayer(Long playerId);
 
 }
