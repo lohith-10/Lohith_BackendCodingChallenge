@@ -1,6 +1,7 @@
 package com.hexaware.CricketTeamManagementSystem.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,10 @@ public class PlayerDTO {
 	private int jerseyNumber;
 	
 	@NotBlank(message="Role cannot be empty")
+	@Pattern(
+		    regexp = "Batsman|Bowler|Keeper|All Rounder",
+		    message = "Role must be Batsman, Bowler, Keeper or All Rounder"
+		)
 	private String role;
 	
 	private int totalMatches;
